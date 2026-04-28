@@ -23,10 +23,10 @@ export class ReleaseNotes extends Stack {
   public constructor(scope: App, id: string, props: ReleaseNotesProps) {
     super(scope, id, props)
 
-    const deploymentRoleImport = Fn.importValue("ci-resources:CloudFormationDeployRole")
-    const releaseNotesExecuteLambdaRoleImport = Fn.importValue("ci-resources:ReleaseNotesExecuteLambdaRole")
-    const jiraTokenSecretImport = Fn.importValue("account-resources:JiraToken")
-    const confluenceTokenSecretImport = Fn.importValue("account-resources:ConfluenceToken")
+    const deploymentRoleImport = Fn.importValue("iam-cdk:IAM:CloudFormationDeployRole:Arn")
+    const releaseNotesExecuteLambdaRoleImport = Fn.importValue("iam-cdk:IAM:ReleaseNotesExecuteLambdaRole:Arn")
+    const jiraTokenSecretImport = Fn.importValue("secrets-cdk:Secrets:JiraToken:Arn")
+    const confluenceTokenSecretImport = Fn.importValue("secrets-cdk:Secrets:ConfluenceToken:Arn")
 
     const deploymentRole = Role.fromRoleArn(this, "deploymentRole", deploymentRoleImport)
     const releaseNotesExecuteLambdaRole = Role.fromRoleArn(this,

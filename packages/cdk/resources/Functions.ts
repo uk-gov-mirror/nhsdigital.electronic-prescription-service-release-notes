@@ -21,7 +21,7 @@ export class Functions extends Construct {
     super(scope, id)
 
     const lambdaDecryptSecretsKMSPolicy = ManagedPolicy.fromManagedPolicyArn(
-      scope, "lambdaDecryptSecretsKMSPolicy", Fn.importValue("account-resources:LambdaDecryptSecretsKMSPolicy"))
+      scope, "lambdaDecryptSecretsKMSPolicy", Fn.importValue("secrets-cdk:IAM:LambdaDecryptSecretsKMSPolicy:Arn"))
 
     // Lambda function to create release notes
     const createReleaseNotesFunction = new PythonLambdaFunction(this, "CreateReleaseNotesFunction", {
